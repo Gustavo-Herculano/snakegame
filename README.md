@@ -1,2 +1,2 @@
-# snakegame
+# Snakegame
 snake game in javascript
