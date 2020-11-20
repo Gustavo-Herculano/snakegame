@@ -1,6 +1,6 @@
 let canvas = document.getElementById('snake');
 let context = canvas.getContext("2d");
-let box = 32;
+let box = 20;
 let snake = [];
 snake[0] = {
     x: 8 * box,
@@ -10,24 +10,24 @@ snake[0] = {
 let direction = "right";
 
 let comida = {
-    x: Math.floor(Math.random() * 15 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 1) * box
+    x: Math.floor(Math.random() * 19 + 1) * box,
+    y: Math.floor(Math.random() * 19 + 1) * box
 }
 
 function criarBG() {
-    context.fillStyle = "lightgreen";
-    context.fillRect(0, 0, 16 * box, 16 * box);
+    context.fillStyle = "rgb(6, 9, 29)";
+    context.fillRect(0, 0, 25 * box, 25 * box);
 }
 
 function criarSnake() {
     for(let i = 0; i < snake.length; i++) {
         context.fillStyle = "green";
-        context.fillRect(snake[i].x, snake[i].y, box, box);
+        context.fillRect(snake[i].x, snake[i].y, box - 1, box - 1);
     }
 }
 
 function criarComida() {
-    context.fillStyle = "red";
+    context.fillStyle = "rgb(241, 15, 83)";
     context.fillRect(comida.x, comida.y, box, box);
 }
 
@@ -42,15 +42,15 @@ function update(event) {
 
 function iniciarGame() {
 
-    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
-    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box; 
+    if(snake[0].x > 24 * box && direction == "right") snake[0].x = 0;
+    if(snake[0].x < 0 && direction == "left") snake[0].x = 25 * box;
+    if(snake[0].y > 24 * box && direction == "down") snake[0].y = 0;
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 25 * box; 
 
     for(let i = 1; i < snake.length; i++) {
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(game);
-            alert('Voce perdeu!')
+            alert('Voce Perdeu :(')
         }
     }
 
@@ -70,8 +70,8 @@ function iniciarGame() {
         snake.pop();
     }
     else {
-        comida.x = Math.floor(Math.random() * 15 + 1) * box;
-        comida.y = Math.floor(Math.random() * 15 + 1) * box;
+        comida.x = Math.floor(Math.random() * 24 + 1) * box;
+        comida.y = Math.floor(Math.random() * 24 + 1) * box;
     }
 
     let newHead = {
